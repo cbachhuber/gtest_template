@@ -13,8 +13,9 @@ class Timer {
   }
   void tic();
   void toc(const bool print_me = false);
-  void printLastSplitMs();
-  void printStatsMs();
+  int getLastSplitMs() const;
+  void printLastSplitMs() const;
+  void printStatsMs() const;
 
  private:
   const std::string m_name;
@@ -22,7 +23,4 @@ class Timer {
   std::chrono::high_resolution_clock::time_point m_current_start;
 };
 
-// class Timers
-
 #endif  // TIMER_H
-

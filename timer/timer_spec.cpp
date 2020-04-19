@@ -90,28 +90,21 @@ TEST_F(TimerFixture, TwoMilliseconds) {
   EXPECT_EQ(expected_output, output);
 }
 
-TEST_F(TimerFixture, PrintStats) {
-  addSplit(1);
-  addSplit(1);
-  addSplit(5);
-  addSplit(1);
-  std::string expected_output{m_unit_name + " stats:\n" + "  Minimum: 1ms\n" + "  Median:  1ms\n" + "  Mean:    2ms\n" +
-                              "  Maximum: 5ms\n"};
+TEST_F(TimerFixture, PrintStatsEmpty) {
+  std::string expected_output{m_unit_name + " stats (0 splits):\n"};
 
   std::string output = getStdoutOfStats();
   EXPECT_EQ(expected_output, output);
 }
 
-// TEST_F(TimerFixture, PrintStats) {
-// m_unit.time(functionCall(x,y));  // tictoc wrapper
-// }
-// TEST(Timers, test) {
-//   Timers unit{};
-//   unit.addTimer("Bill");  // Adds timer to internal vector
-//   unit.addTimer("Bob");
-//   unit["Bill"].tic();
-//   sleep(300ms);
-//   unit["Bill"].toc();  // Adds time diff to internal vector. Possibly prints current msmt in ms
-//   unit["Bob"].time(functionCall(x,y));
-//   unit.printAllStats(); // Prints number of msmts, min, mean, median, max (toggleable)
-// }
+TEST_F(TimerFixture, PrintStats) {
+  addSplit(1);
+  addSplit(1);
+  addSplit(5);
+  addSplit(1);
+  std::string expected_output{m_unit_name + " stats (4 splits):\n" + "  Minimum: 1ms\n" + "  Median:  1ms\n" +
+                              "  Mean:    2ms\n" + "  Maximum: 5ms\n"};
+
+  std::string output = getStdoutOfStats();
+  EXPECT_EQ(expected_output, output);
+}
