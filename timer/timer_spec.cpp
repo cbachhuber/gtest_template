@@ -48,6 +48,17 @@ class TimerFixture : public ::testing::Test {
   }
 };
 
+TEST_F(TimerFixture, TocCanCallPrint) {
+  std::string expected_output{m_unit_name + ": 1ms"};
+  testing::internal::CaptureStdout();
+  m_unit.tic();
+  mysleep(1);
+  m_unit.toc(true);
+  std::string output = testing::internal::GetCapturedStdout();
+
+  EXPECT_EQ(expected_output, output);
+}
+
 TEST_F(TimerFixture, TocCallsTic) {
   std::string expected_output{m_unit_name + ": 2ms"};
 
