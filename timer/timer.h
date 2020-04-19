@@ -9,17 +9,20 @@
 class Timer {
  public:
   Timer(const std::string& name) : m_name{name} {
-    // tic();
+    tic();
   }
   void tic();
   void toc(const bool print_me = false);
-  void getLastTimeMs();
+  void printLastSplitMs();
+  void printStatsMs();
 
  private:
   const std::string m_name;
   std::vector<std::chrono::nanoseconds> m_splits;
   std::chrono::high_resolution_clock::time_point m_current_start;
 };
-#endif  // TIMER_H
 
 // class Timers
+
+#endif  // TIMER_H
+
