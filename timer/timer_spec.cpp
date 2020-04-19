@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "my_project.hpp"
+#include "timer.h"
 #include <string>
 #include <chrono>
 #include <thread>
