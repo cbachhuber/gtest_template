@@ -50,5 +50,3 @@ void Timer::printStatsMs() const {
     std::cout << "  Maximum: " << maximum << "ms\n";
   }
 }
-
-// ostream operator?
