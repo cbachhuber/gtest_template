@@ -1,4 +1,23 @@
 
-int CalculateEverything(){
-    return 42;
-}
+#ifndef TIMER_H
+#define TIMER_H
+
+#include <chrono>
+#include <string>
+#include <vector>
+
+class Timer {
+ public:
+  Timer(const std::string& name) : m_name{name} {
+    // tic();
+  }
+  void tic();
+  void toc(const bool print_me = false);
+  void getLastTimeMs();
+
+ private:
+  const std::string m_name;
+  std::vector<std::chrono::nanoseconds> splits;
+  std::chrono::high_resolution_clock::time_point current_start;
+};
+#endif  // TIMER_H
