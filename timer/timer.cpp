@@ -3,16 +3,16 @@
 #include <iostream>
 
 void Timer::tic() {
-    current_start = std::chrono::high_resolution_clock::now();
+    m_current_start = std::chrono::high_resolution_clock::now();
 }
 
 void Timer::toc(const bool) {
-    splits.push_back(std::chrono::high_resolution_clock::now() - current_start);
+    m_splits.push_back(std::chrono::high_resolution_clock::now() - m_current_start);
     // tic();
 }
 
 void Timer::getLastTimeMs() {
-    std::cout << m_name << ": " << std::chrono::duration_cast<std::chrono::milliseconds>(splits.back()).count() << "ms";
+    std::cout << m_name << ": " << std::chrono::duration_cast<std::chrono::milliseconds>(m_splits.back()).count() << "ms";
 }
 
 
